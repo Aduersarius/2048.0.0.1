@@ -1,0 +1,121 @@
+#include <iostream>
+
+#include <cstdlib>
+
+#include <ctime>
+
+using namespace std;
+
+int main() {
+
+	srand(time(0));
+
+	char e;
+
+	int a[4][4] = { {0,0,0,0},{ 0,0,0,0 },{ 0,0,0,0 },{ 0,0,0,0 } };
+    for(int i = 0; i<6; i++) {int o2 = rand() % 16;
+	if (a[o2 / 4][o2 % 4] == 0) { a[o2 / 4][o2 % 4] = 2;}}
+	do {
+
+		for (;;) {
+
+		for (int i = 0; i < 4; i++) { cout << a[i][0] <<' '<< a[i][1] <<' '<< a[i][2] <<' '<< a[i][3] << endl; }
+
+		cin >> e;
+
+		switch (e) {
+
+		case 'j':
+
+			for (int i = 2; i >= 0; i--) {
+
+				for (int u = 0; u < 4; u++) {
+
+					if (a[i][u] != 0) {
+
+						if (a[3][u] == 0) { a[3][u] = a[i][u]; a[i][u] = 0; }
+
+						else if (a[3][u] == a[i][u]) { a[3][u] += a[i][u]; a[i][u] = 0;}
+
+						else if ((a[3][u] != a[i][u]) && (a[2][u] == a[i][u])&&(i!=2)) { a[2][u] += a[i][u]; a[i][u] = 0;}
+
+						else if ((a[3][u] != a[i][u]) && (a[2][u] == 0)) { a[2][u] = a[i][u]; a[i][u] = 0;}
+
+						else if ((a[3][u] != a[i][u]) && (a[2][u] != a[i][u]) && (a[1][u] == a[i][u])&&(i!=1)) { a[1][u] += a[i][u]; a[i][u] = 0;}
+
+						else if ((a[3][u] != a[i][u]) && (a[2][u] != a[i][u]) && (a[1][u] == 0)) { a[1][u] += a[i][u]; a[i][u] = 0;}}}}
+
+			break;
+
+		case 'k':
+
+			for (int i = 1; i <= 3; i++) {
+
+				for (int u = 0; u < 4; u++) {
+
+					if (a[i][u] != 0) {
+
+						if (a[0][u] == 0) { a[0][u] = a[i][u]; a[i][u] = 0; }
+
+						else if (a[0][u] == a[i][u]) { a[0][u] += a[i][u]; a[i][u] = 0; }
+
+						else if ((a[0][u] != a[i][u]) && (a[1][u] == a[i][u]) && (i != 1)) { a[1][u] += a[i][u]; a[i][u] = 0; }
+
+						else if ((a[0][u] != a[i][u]) && (a[1][u] == 0)) { a[1][u] = a[i][u]; a[i][u] = 0; }
+
+						else if ((a[0][u] != a[i][u]) && (a[1][u] != a[i][u]) && (a[1][u] == a[i][u]) && (i != 2)) { a[2][u] += a[i][u]; a[i][u] = 0; }
+
+						else if ((a[0][u] != a[i][u]) && (a[1][u] != a[i][u]) && (a[1][u] == 0)) { a[2][u] += a[i][u]; a[i][u] = 0; }}}}
+
+			break;
+
+		case 'h':
+
+			for (int u = 1; u <= 3; u++) {
+
+				for (int i = 0; i < 4; i++) {
+
+					if (a[i][u] != 0) {
+
+						if (a[i][0] == 0) { a[i][0] = a[i][u]; a[i][u] = 0; }
+
+						else if (a[i][0] == a[i][u]) { a[i][0] += a[i][u]; a[i][u] = 0; }
+
+						else if ((a[i][0] != a[i][u]) && (a[i][1] == a[i][u]) && (u != 1)) { a[i][1] += a[i][u]; a[i][u] = 0; }
+
+						else if ((a[i][0] != a[i][u]) && (a[i][1] == 0)) { a[i][1] = a[i][u]; a[i][u] = 0; }
+
+						else if ((a[i][0] != a[i][u]) && (a[i][1] != a[i][u]) && (a[i][1] == a[i][u]) && (u != 2)) { a[i][2] += a[i][u]; a[i][u] = 0; }
+
+						else if ((a[i][0] != a[i][u]) && (a[i][1] != a[i][u]) && (a[i][1] == 0)) { a[i][2] += a[i][u]; a[i][u] = 0; }}}}
+
+			break;
+
+		case 'l':
+
+			for (int u = 2; u >= 0; u--) {
+
+				for (int i = 0; i < 4; i++) {
+
+					if (a[i][u] != 0) {
+
+						if (a[i][3] == 0) { a[i][3] = a[i][u]; a[i][u] = 0; }
+
+						else if (a[i][3] == a[i][u]) { a[i][3] += a[i][u]; a[i][u] = 0; }
+
+						else if ((a[i][3] != a[i][u]) && (a[i][2] == a[i][u]) && (u != 2)) { a[i][2] += a[i][u]; a[i][u] = 0; }
+
+						else if ((a[i][3] != a[i][u]) && (a[i][2] == 0)) { a[i][2] = a[i][u]; a[i][u] = 0; }
+
+						else if ((a[i][3] != a[i][u]) && (a[i][2] != a[i][u]) && (a[i][1] == a[i][u]) && (u != 1)) { a[i][1] += a[i][u]; a[i][u] = 0; }
+
+						else if ((a[i][3] != a[i][u]) && (a[i][2] != a[i][u]) && (a[i][1] == 0)) { a[i][1] += a[i][u]; a[i][u] = 0; }}}}
+
+		}
+}
+	}
+
+	while (e != 'q');
+
+	return 0;
+}
